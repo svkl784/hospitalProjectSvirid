@@ -7,12 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 @Repository
-public interface PatientDao  extends JpaRepository<Patient, Long> {
-    public void deletePatient(Patient patient);
+public interface PatientDao  extends JpaRepository<Patient, Integer> {
 
-    public void createPatient(Patient patient);
-
-    public List<Patient> getAllPatient();
 }
 
 

@@ -3,17 +3,17 @@ package com.project.hospital.dto;
 import javax.persistence.Column;
 
 public class UserDto {
-    private Long id_user;
+    private Integer id_user;
     private boolean admin;
     private String userName;
     private String email;
     private String password;
 
-    public Long getId_user() {
+    public Integer getId_user() {
         return id_user;
     }
 
-    public void setId_user(Long id_user) {
+    public void setId_user(Integer id_user) {
         this.id_user = id_user;
     }
 

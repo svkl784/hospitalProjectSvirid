@@ -1,16 +1,11 @@
 package com.project.hospital.service.impl;
 
-import com.project.hospital.dto.EmployeeDto;
+
 import com.project.hospital.dto.PatientDto;
 import com.project.hospital.model.dao.PatientDao;
-import com.project.hospital.model.entity.Employee;
 import com.project.hospital.model.entity.Patient;
 import com.project.hospital.service.PatientService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 

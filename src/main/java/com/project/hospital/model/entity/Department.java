@@ -11,7 +11,7 @@ public class Department implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_department")
-    private int id_department;
+    private Integer id_department;
     @Column (name = "name_department")
     private String name_department;
 
@@ -48,11 +48,11 @@ public class Department implements Serializable {
         this.employees = employees;
     }
 
-    public int getId_department() {
+    public Integer getId_department() {
         return id_department;
     }
 
-    public void setId_department(int id_department) {
+    public void setId_department(Integer id_department) {
         this.id_department = id_department;
     }
 

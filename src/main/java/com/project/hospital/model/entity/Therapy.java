@@ -9,7 +9,7 @@ public class Therapy implements Serializable {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "id_therapy")
-    private Long id_therapy;
+    private Integer id_therapy;
     @Column (name = "id_category_therapy")
     private int id_category_therapy;
     @Column (name = "name_therapy")
@@ -57,11 +57,11 @@ public class Therapy implements Serializable {
         this.id_patient = id_patient;
     }
 
-    public Long getId_therapy() {
+    public Integer getId_therapy() {
         return id_therapy;
     }
 
-    public void setId_therapy(Long id_therapy) {
+    public void setId_therapy(Integer id_therapy) {
         this.id_therapy = id_therapy;
     }
 

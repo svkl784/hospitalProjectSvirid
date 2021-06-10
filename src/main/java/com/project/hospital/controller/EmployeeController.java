@@ -3,6 +3,7 @@ package com.project.hospital.controller;
 import com.project.hospital.dto.EmployeeDto;
 import com.project.hospital.service.EmployeeService;
 
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
@@ -18,7 +19,7 @@ public class EmployeeController {
 
     @RequestMapping("/allEmployees")
     public List <EmployeeDto> getAllEmployee() {
-        return employeeService.getAllEmployee();
+        return employeeService.getAll();
     }
 }
 

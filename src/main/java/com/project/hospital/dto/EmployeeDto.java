@@ -7,17 +7,17 @@ import javax.persistence.*;
 import java.util.List;
 
 public class EmployeeDto {
-    private Long id;
+    private Integer id;
     private String firstName;
     private String secondName;
     private Department department;
     private List<Patient> patients;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

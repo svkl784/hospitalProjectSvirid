@@ -6,7 +6,7 @@ import com.project.hospital.model.entity.Patient;
 import javax.persistence.*;
 
 public class TherapyDto {
-    private Long id_therapy;
+    private Integer id_therapy;
     private int id_category_therapy;
     private String name_therapy;
 
@@ -14,11 +14,11 @@ public class TherapyDto {
 
     private Employee id_employee;
 
-    public Long getId_therapy() {
+    public Integer getId_therapy() {
         return id_therapy;
     }
 
-    public void setId_therapy(Long id_therapy) {
+    public void setId_therapy(Integer id_therapy) {
         this.id_therapy = id_therapy;
     }
 

@@ -7,9 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-// CRUD - create, read, update, delete
 @Repository
-public interface EmployeeDao extends JpaRepository<Employee, Long> {
-//    List <Employee> getAllByFirstName(String firstName);
+public interface EmployeeDao extends JpaRepository<Employee,Integer> {
+    List<Employee> getAllByFirstName(String firstName);
 
 }

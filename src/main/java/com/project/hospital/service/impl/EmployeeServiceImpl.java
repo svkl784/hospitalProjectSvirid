@@ -19,7 +19,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public List<EmployeeDto> getAllEmployee() {
+    public List<EmployeeDto> getAll() {
         List<Employee> employees = employeeDao.findAll();
 
         List<EmployeeDto> employeeDtos = new ArrayList<>();

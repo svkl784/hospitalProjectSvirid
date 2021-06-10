@@ -8,11 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 @Repository
-public interface TherapyDao  extends JpaRepository<Therapy, Long> {
-    void delete(Therapy therapy);
-
-    void createOrUpdate(Therapy therapy);
-
-    List<Therapy> getAllTherapy();
+public interface TherapyDao  extends JpaRepository<Therapy, Integer> {
+//
 
 }

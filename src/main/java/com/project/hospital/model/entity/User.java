@@ -9,7 +9,7 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column (name = "id_user")
-    private Long id_user;
+    private Integer id_user;
     @Column (name="admin")
     private boolean admin;
     @Column (name = "user_name")
@@ -39,11 +39,11 @@ public class User implements Serializable {
                 '}';
     }
 
-    public Long getId_user() {
+    public Integer getId_user() {
         return id_user;
     }
 
-    public void setId_user(Long id_user) {
+    public void setId_user(Integer id_user) {
         this.id_user = id_user;
     }
 
