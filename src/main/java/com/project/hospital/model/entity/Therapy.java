@@ -1,5 +1,7 @@
 package com.project.hospital.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -18,11 +20,13 @@ public class Therapy implements Serializable {
     @OneToOne (cascade = {CascadeType.REFRESH,CascadeType.PERSIST,
             CascadeType.MERGE,CascadeType.DETACH})
     @JoinColumn (name = "id_patient")
+    @JsonIgnore
     private Patient id_patient;
 
     @ManyToOne (cascade = {CascadeType.REFRESH,CascadeType.PERSIST,
             CascadeType.MERGE,CascadeType.DETACH})
     @JoinColumn (name = "id_employee")
+    @JsonIgnore
     private Employee id_employee;
 
 

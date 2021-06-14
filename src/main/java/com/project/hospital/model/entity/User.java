@@ -1,5 +1,7 @@
 package com.project.hospital.model.entity;
 
+import com.project.hospital.model.entity.enums.Role;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -7,17 +9,20 @@ import java.io.Serializable;
 @Table(name = "user")
 public class User implements Serializable {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column (name = "id_user")
-    private Integer id_user;
-    @Column (name="admin")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_user")
+    private Long id_user;
+    @Column(name = "admin")
     private boolean admin;
-    @Column (name = "user_name")
+    @Column(name = "user_name")
     private String userName;
-    @Column (name = "email")
+    @Column(name = "email")
     private String email;
-    @Column (name = "password")
+    @Column(name = "password")
     private String password;
+    @Column(name = "role")
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     public User() {
     }
@@ -35,15 +40,16 @@ public class User implements Serializable {
                 "admin=" + admin +
                 ", userName='" + userName + '\'' +
                 ", email='" + email + '\'' +
-                ", password='" + password+'\'' + // как сделать пароль невидимым??подумать
+                ", password='" + password + '\'' + // как сделать пароль невидимым??подумать
                 '}';
     }
 
-    public Integer getId_user() {
+
+    public Long getId_user() {
         return id_user;
     }
 
-    public void setId_user(Integer id_user) {
+    public void setId_user(Long id_user) {
         this.id_user = id_user;
     }
 
@@ -77,5 +83,13 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

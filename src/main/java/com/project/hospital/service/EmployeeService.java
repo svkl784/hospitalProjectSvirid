@@ -4,5 +4,6 @@ import com.project.hospital.dto.EmployeeDto;
 import java.util.List;
 
 public interface EmployeeService  {
-    public List<EmployeeDto> getAll();
+  List<EmployeeDto> getAll();
+
 }

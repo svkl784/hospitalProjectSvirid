@@ -1,5 +1,7 @@
 package com.project.hospital.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,6 +22,7 @@ public class Employee implements Serializable {
     @ManyToOne (cascade = {CascadeType.REFRESH,CascadeType.PERSIST,
             CascadeType.MERGE,CascadeType.DETACH}) //подумаnm, может сделать uni-directional связь
     @JoinColumn (name = "department")
+    @JsonIgnore
     private Department department;
 
 
@@ -28,6 +31,7 @@ public class Employee implements Serializable {
     @JoinTable (name = "therapy",
             joinColumns ={@JoinColumn(name = "id_employee")},
             inverseJoinColumns = {@JoinColumn(name = "id_patient")})
+    @JsonIgnore
     private List <Patient> patients;
 
 

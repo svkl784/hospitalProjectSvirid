@@ -33,6 +33,8 @@ public class Patient implements Serializable {
             inverseJoinColumns = {@JoinColumn(name = "id_employee")})
     private List<Employee> employees;
 
+    private int status;
+
     public Patient() {
     }
 
@@ -110,5 +112,13 @@ public class Patient implements Serializable {
 
     public void setHealthsComplaints(String healthsComplaints) {
         this.healthsComplaints = healthsComplaints;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

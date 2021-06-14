@@ -3,7 +3,6 @@ import com.project.hospital.dto.UserDto;
 import com.project.hospital.model.dao.UserDao;
 import com.project.hospital.model.entity.User;
 import com.project.hospital.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public List<UserDto> getAllUser() {
+    public List<UserDto> getAllUsers() {
         List<User> users = userDao.findAll();
         List<UserDto> userDtos = new ArrayList<>();
         users.forEach(user1 -> {
@@ -33,4 +32,9 @@ public class UserServiceImpl implements UserService {
         });
         return userDtos;
     }
+
+
+
+
 }
+

@@ -8,7 +8,13 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface EmployeeDao extends JpaRepository<Employee,Integer> {
+public interface EmployeeDao extends JpaRepository<Employee, Integer> {
     List<Employee> getAllByFirstName(String firstName);
+
+//    Employee findByUsername(String username);
+//
+//    Employee findByEmail(String email);
+//
+//    Employee findByUsernameAndEmail(String username, String email);
 
 }
