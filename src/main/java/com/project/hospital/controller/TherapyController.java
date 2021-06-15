@@ -1,11 +1,9 @@
 package com.project.hospital.controller;
 
-import com.project.hospital.dto.PatientDto;
 import com.project.hospital.dto.TherapyDto;
 import com.project.hospital.service.TherapyService;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;

@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.List;
 
 public class PatientDto {
-    private Integer id_patient;
+    private Long id_patient;
     private String firstName;
     private String secondName;
     private String dateOfBirth;
@@ -17,11 +17,11 @@ public class PatientDto {
 
     private List<Employee> employees;
 
-    public Integer getId_patient() {
+    public Long getId_patient() {
         return id_patient;
     }
 
-    public void setId_patient(Integer id_patient) {
+    public void setId_patient(Long id_patient) {
         this.id_patient = id_patient;
     }
 
