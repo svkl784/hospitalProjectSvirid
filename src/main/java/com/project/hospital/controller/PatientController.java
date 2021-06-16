@@ -12,7 +12,7 @@ import java.util.List;
 
 //@RestController почему не работает??????????
 @Controller
-@RequestMapping("/patient")
+//@RequestMapping("/patient")
 public class PatientController {
     private final PatientService patientService;
 
@@ -20,18 +20,30 @@ public class PatientController {
         this.patientService = patientService;
     }
 
-    public PatientDto savePatient(@RequestBody PatientDto patientDto) throws ValidationException{
-        return patientService.savePatient(patientDto);
-    }
+
     @GetMapping("/findAllPatients")
     public String findAllPatients (Model model){
      List <PatientDto> allPatients = patientService.findAll();
      model.addAttribute("allPatients", allPatients);
         return "all-patients";
     }
+    @GetMapping("/newPatient")
+    public String newPatient(Model model){
+        model.addAttribute("newPatient", new PatientDto());
+        return "new-patient";
+    }
+    @PostMapping("/savePatient")
+    public String savePatient(@ModelAttribute("newPatient") PatientDto patientDto, Model model)
+            throws ValidationException{
+        patientService.savePatient(patientDto);
+        model.addAttribute("newPatient", patientDto);
+        return "redirect:/findAllPatients";
+    }
+
     @GetMapping ("/findBySecondName")
-    public PatientDto findBySecondName(@RequestParam String secondName, Model model){
-        return patientService.findBySecondName(secondName);
+    public String findBySecondName(@RequestParam String secondName, Model model){
+        model.addAttribute("secondName",patientService.findBySecondName(secondName));
+    return "find-by-secondName";
     }
 
     @DeleteMapping("/deletePatient/{id}")
@@ -41,45 +53,5 @@ public class PatientController {
     }
 
 
-
-
-
-//    @GetMapping("/patients")
-//    public String getAllPatient(Model model) {
-//        List<PatientDto> allPatients = patientService.getAllPatient();
-//        model.addAttribute("allPatients", allPatients);
-//        return "all-patients";
-//    }
-//    @GetMapping("/createNewPatient")
-//    public String createNewPatient (Model model){
-//        Patient newPatient = new Patient();
-//        model.addAttribute("newPatient",newPatient);
-//        return "show-new-patient";
-//    }
-
-//    @GetMapping ("/patients/{id}")
-//    public PatientDto getPatientById (@PathVariable Long id) {
-//        PatientDto patient = patientService.getPatientById(id);
-//        return patient;
-//    }
-
-//     @PostMapping
-//     public String add(@RequestParam String firstName, @RequestParam String secondName,
-//                       RequestParam String dateOfBirth, @RequestParam String healthsComplaints,
-//                       Map<String, Object> model) {
-//         Patient patient = new Patient(firstName,secondName,dateOfBirth, healthsComplaints);
-//
-//         patientService.save(patient);
-//
-//         Iterable<PatientDto> messages = patientService.getAllPatient();
-//
-//         model.put("newPatient", messages);
-//
-//         return "main";
-
-//    @GetMapping("/savePatient")
-//    public String saveNewPatient(@ModelAttribute){
-//        return "redirect:/";
-//    }
 }
 
