@@ -27,23 +27,6 @@ public class PatientServiceImpl implements PatientService {
     }
 
 
-//    @Override
-//    public List<PatientDto> getFindALL() {
-//        List<Patient> patients = patientDao.findAll();
-//        List<PatientDto> patientDtos = new ArrayList<>();
-//        patients.forEach(patient -> {
-//            PatientDto patientDto = new PatientDto();
-//            patientDto.setId_patient(patient.getId_patient());
-//            patientDto.setFirstName(patient.getFirstName());
-//            patientDto.setSecondName(patient.getSecondName());
-//            patientDto.setDateOfBirth(patient.getDateOfBirth());
-//            patientDto.setHealthsComplaints(patient.getHealthsComplaints());
-//            patientDtos.add(patientDto);
-//        });
-//        return patientDtos;
-//
-//    }
-
     @Override
     public List<PatientDto> findAll() {
         return patientDao.findAll()
@@ -53,11 +36,11 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public PatientDto savePatient(PatientDto patientDto) throws ValidationException{
+    public void savePatient(PatientDto patientDto) throws ValidationException{
         validatePatientDto(patientDto);
         Patient savedPatient = patientDao.save(patientConverter
                 .fromPatientDtoToPatient(patientDto));
-        return patientConverter.fromPatientToPatientDto(savedPatient);
+        patientConverter.fromPatientToPatientDto(savedPatient);
     }
 
     private void validatePatientDto(PatientDto patientDto) throws ValidationException {

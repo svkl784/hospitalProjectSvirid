@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: powderblue;;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .container {
+            padding: 20px;
+            background-color: white;
+        }
+
+        input[type=text], input[type=password] {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            display: inline-block;
+            border: none;
+            background: #33ccff;
+        }
+
+        input[type=text]:focus, input[type=password]:focus {
+            background-color: #33ccff;
+            outline: none;
+        }
+
+        hr {
+            border: 1px solid #f1f1f1;
+            margin-bottom: 25px;
+        }
+
+        a {
+            color: dodgerblue;
+        }
+
+        .adminMessage {
+            background-color: #f1f1f1;
+            text-align: center;
+        }
+        .button {
+            background-color: #33ccff;
+            border: none;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        .button4 {border-radius: 12px;}
+    </style>
+    <title></title>
+</head>
+<body>
+<div>
+    <h3>${pageContext.request.userPrincipal.name}</h3>
+    <sec:authorize access="!isAuthenticated()">
+        <h4><a href="/login">Войти</a></h4>
+        <h4><a href="/registration">Зарегистрироваться</a></h4>
+    </sec:authorize>
+    <sec:authorize access="isAuthenticated()">
+        <h4><a href="/logout">Выйти</a></h4>
+    </sec:authorize>
+    <h4><a href="/news">Новости (только пользователь)</a></h4>
+    <h4><a href="/admin">Пользователи (только админ)</a></h4>
+</div>
+</body>
+</html>
+<!--</head>-->
+<!--<body>-->
+<!--<form th:action="@{/logout}" method="post">-->
+<!--    <input type="submit" value="Sign Out"/>-->
+<!--</form>-->
+<!--<h1>Hello</h1>-->
+<!--</body>-->
+<!--</html>-->

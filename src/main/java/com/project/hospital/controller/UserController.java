@@ -1,20 +1,15 @@
 package com.project.hospital.controller;
 
-import com.project.hospital.dto.EmployeeDto;
 import com.project.hospital.dto.UserDto;
-import com.project.hospital.model.entity.User;
 import com.project.hospital.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @Controller
+@RequestMapping ("/user")
 public class UserController {
 
     private final UserService userService;
@@ -23,23 +18,34 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/")
-    public String showWelcome(Map<String, Object> model) {
-        return "show-welcome";
-    }
-
-    @GetMapping("/userRegister")
-    public String userRegister() {
-        return "show-user-register";
-    }
-
-
-    @GetMapping("/allUsers")
+    @GetMapping("/admin")
     public String getAllUsers(Model model) {
         List<UserDto> allUsers = userService.getAllUsers();
         model.addAttribute("allUsers", allUsers);
-        return "all-users";
+        return "admin";
     }
+    @PostMapping("/admin")
+    public String  deleteUser(@RequestParam(required = true, defaultValue = "" ) Long userId,
+                              @RequestParam(required = true, defaultValue = "" ) String action,
+                              Model model) {
+        if (action.equals("delete")){
+            userService.deleteUser(userId);
+        }
+        return "redirect:/admin";
+    }
+
+    @GetMapping("/admin/gt/{userId}")
+    public String  gtUser(@PathVariable("userId") Long userId, Model model) {
+        model.addAttribute("allUsers", userService.usergtList(userId));
+        return "admin";
+    }
+
+//    @GetMapping("{user}")
+//    public String userEditForm(@PathVariable User user, Model model) {
+//        model.addAttribute("user", user);
+//        model.addAttribute("roles", Role.values());
+//        return "userEdit";
+//    }
 }
 
 

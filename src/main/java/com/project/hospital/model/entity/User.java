@@ -1,47 +1,78 @@
 package com.project.hospital.model.entity;
 
-import com.project.hospital.model.entity.enums.Role;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.io.Serializable;
+import javax.validation.constraints.Size;
+import java.util.Collection;
+import java.util.Set;
 
 @Entity
 @Table(name = "user")
-public class User implements Serializable {
+public class User
+        implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_user")
     private Long id_user;
-    @Column(name = "admin")
-    private boolean admin;
     @Column(name = "user_name")
+    @Size(min=2, message = "At least 5 characters")
     private String userName;
-    @Column(name = "email")
-    private String email;
     @Column(name = "password")
+    @Size(min=2, message = "At least 5 characters")
     private String password;
-    @Column(name = "role")
-    @Enumerated(EnumType.STRING)
-    private Role role;
+    @Transient
+    private String passwordConfirm;
+
+    //        @ElementCollection (targetClass = Role.class, fetch = FetchType.EAGER)
+//        @CollectionTable (name = "user_role", joinColumns = @JoinColumn(name = "id_user"))
+//        @Enumerated (EnumType.STRING)
+//        private Set<Role> role;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_roles",joinColumns = @JoinColumn(name = "users_id_user"))
+    private Set <Role> roles;
 
     public User() {
     }
 
-    public User(boolean admin, String userName, String email, String password) {
-        this.admin = admin;
+    public User(Long id_user, String userName, String password) {
+        this.id_user = id_user;
         this.userName = userName;
-        this.email = email;
         this.password = password;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "admin=" + admin +
+                "id_user=" + id_user +
                 ", userName='" + userName + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' + // как сделать пароль невидимым??подумать
+                ", password='" + password + '\'' +
+                ", role=" + roles +
                 '}';
+    }
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return getRoles();
     }
 
 
@@ -53,43 +84,43 @@ public class User implements Serializable {
         this.id_user = id_user;
     }
 
-    public boolean isAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(boolean admin) {
-        this.admin = admin;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
 
     public void setUserName(String userName) {
         this.userName = userName;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public String getPassword() {
         return password;
     }
 
+    @Override
+    public String getUsername() {
+        return null;
+    }
+
+    public String getUserName() {
+        return null;
+    }
+
+
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public Role getRole() {
-        return role;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
     }
 }

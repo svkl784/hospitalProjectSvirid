@@ -9,7 +9,7 @@ import java.util.List;
 public interface PatientService {
     List<PatientDto> findAll();
 
-    PatientDto savePatient(PatientDto PatientDto) throws ValidationException;
+    void savePatient(PatientDto PatientDto) throws ValidationException;
 
     void deletePatient(Long id_patient);
 

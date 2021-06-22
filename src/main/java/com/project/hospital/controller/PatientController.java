@@ -10,9 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-//@RestController почему не работает??????????
 @Controller
-//@RequestMapping("/patient")
+@RequestMapping("/patient")
 public class PatientController {
     private final PatientService patientService;
 
@@ -25,7 +24,7 @@ public class PatientController {
     public String findAllPatients (Model model){
      List <PatientDto> allPatients = patientService.findAll();
      model.addAttribute("allPatients", allPatients);
-        return "all-patients";
+        return "allPatients";
     }
     @GetMapping("/newPatient")
     public String newPatient(Model model){
@@ -33,10 +32,9 @@ public class PatientController {
         return "new-patient";
     }
     @PostMapping("/savePatient")
-    public String savePatient(@ModelAttribute("newPatient") PatientDto patientDto, Model model)
+    public String savePatient(@RequestBody PatientDto patientDto, Model model)
             throws ValidationException{
         patientService.savePatient(patientDto);
-        model.addAttribute("newPatient", patientDto);
         return "redirect:/findAllPatients";
     }
 
