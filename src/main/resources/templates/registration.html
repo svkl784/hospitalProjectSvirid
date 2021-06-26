@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: powderblue;;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .container {
+            padding: 20px;
+            background-color: white;
+        }
+
+        input[type=text], input[type=password] {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            display: inline-block;
+            border: none;
+            background: #33ccff;
+        }
+
+        input[type=text]:focus, input[type=password]:focus {
+            background-color: #33ccff;
+            outline: none;
+        }
+
+        hr {
+            border: 1px solid #f1f1f1;
+            margin-bottom: 25px;
+        }
+
+        a {
+            color: dodgerblue;
+        }
+
+        .adminMessage {
+            background-color: #f1f1f1;
+            text-align: center;
+        }
+        .button {
+            background-color: #33ccff;
+            border: none;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        .button4 {border-radius: 12px;}
+    </style>
+</head>
+<body>
+
+<form th: modelAttribute="userForm" method="post">
+    <div><label> User Name : <input type="text" name="username" /> </label></div>
+    <div><label>
+        <input errors path="username" />
+    </label> ${usernameError}</div>
+
+    <div><label> Password: <input type="password" name="password"/> </label></div>
+    <div><input type="submit" value="Sign In"/></div>
+    <div><label>
+        <input errors path="password" />
+    </label> ${usernameError}</div>
+</form>
+</body>
+<a href="/">Main</a>
+<p>If you are not registered, contact the administrator <a href="https://www.google.com">Write a message to the administrator</a>.</p>
+</html>
+<!--<div>-->
+<!--    <form:form method="POST" modelAttribute="userForm">-->
+<!--        <h2>Регистрация</h2>-->
+<!--        <div>-->
+<!--            <form:input type="text" path="username" placeholder="Username"-->
+<!--                        autofocus="true"></form:input>-->
+<!--            <form:errors path="username"></form:errors>-->
+<!--            ${usernameError}-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <form:input type="password" path="password" placeholder="Password"></form:input>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <form:input type="password" path="passwordConfirm"-->
+<!--                        placeholder="Confirm your password"></form:input>-->
+<!--            <form:errors path="password"></form:errors>-->
+<!--            ${passwordError}-->
+<!--        </div>-->
+<!--        <button type="submit">Зарегистрироваться</button>-->
+<!--    </form:form>-->
+<!--    <a href="/">Главная</a>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->

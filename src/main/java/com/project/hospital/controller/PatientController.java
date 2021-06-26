@@ -32,9 +32,10 @@ public class PatientController {
         return "new-patient";
     }
     @PostMapping("/savePatient")
-    public String savePatient(@RequestBody PatientDto patientDto, Model model)
+    public String savePatient(@RequestBody PatientDto patientDto)
             throws ValidationException{
         patientService.savePatient(patientDto);
+
         return "redirect:/findAllPatients";
     }
 

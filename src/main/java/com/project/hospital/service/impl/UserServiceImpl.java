@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserServiceImpl implements UserService ,UserDetailsService {
+public class UserServiceImpl implements UserService, UserDetailsService {
     @PersistenceContext
     private EntityManager em;
     @Autowired
@@ -89,7 +89,6 @@ public class UserServiceImpl implements UserService ,UserDetailsService {
         });
         return userDtos;
     }
-
 
 }
 

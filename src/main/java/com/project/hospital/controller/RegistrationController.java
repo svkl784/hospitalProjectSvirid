@@ -55,7 +55,6 @@ public class RegistrationController {
                     "A user with the same name already exists");
             return "registration";
         }
-
         return "redirect:/";
     }
 }

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+    <link href="css/table_style.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: powderblue;
+        }
+
+        h1 {
+            color: blue;
+        }
+
+        p {
+            color: red;
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    <table>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">User Name</th>
+            <th scope="col">Password</th>
+            <th scope="col">Role</th>
+        </tr>
+        <th:block th:each="users:${allUsers}">
+            <td>
+
+                <td th:text="${users.id_user}"></td>
+                <td th:text="${users.userName}"></td>
+                <td><a href="/user/allUsers/${user.id}">edit</a></td>
+                    <th:each items="${user.roles}" var="role">${role.name}; </th:each>
+
+                <td>
+                    <form action="${pageContext.request.contextPath}/admin" method="post">
+                        <input type="hidden" name="userId" value="${user.id_user}"/>
+                        <input type="hidden" name="action" value="delete"/>
+                        <button type="submit">Delete</button>
+                    </form>
+
+                </td>
+
+        </th:block>
+    </table>
+    <a href="/">Главная</a>
+</div>
+</body>
+</html>
